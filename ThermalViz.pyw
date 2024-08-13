@@ -106,7 +106,13 @@ def LoadData(FileName):
             for i in Axis_List:
             
                 if('TimeStamp' not in i):
-                    Yaxis[i] += [  float(  datadata[  Axis_List[ i ]  ]  )  ]
+                    try:
+                        Yaxis[i] += [  float(  datadata[  Axis_List[ i ]  ]  )  ]
+                    except:
+                        if len(datadata[  Axis_List[ i ]  ] ) == 0:
+                            Yaxis[i] += [ None ]
+                        else:
+                            Yaxis[i] += [datadata[  Axis_List[ i ]  ] ]
                     
                 if('TimeStamp' in i):
                     
